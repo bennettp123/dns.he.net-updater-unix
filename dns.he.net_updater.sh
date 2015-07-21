@@ -17,7 +17,7 @@ When called with -l or -i, it uses the address of a local interface instead.
 # detect sed syntax
 sed_ex_sw='-E' #default
 for sw in '-r' '-E'; do
-  if echo 1 | sed "$sw" 's/1/2/' 2>&1 | grep --silent 2; then
+  if echo '123' | sed "$sw" 's/1(2)3/\1/' 2>&1 | grep --silent 2; then
     sed_ex_sw="$sw"
     break
   fi
