@@ -85,7 +85,7 @@ if [ "$use_local_iface_address" == "yes" ]; then
   else
     logger -i -t com.bennettp123.dyndns "${hostname}: could not determine local IP address"
     retval=1
-    break
+    exit 1
   fi
 else
   currentip=$(curl -4 -x "${http_proxy}" -s "http://checkip.dns.he.net" | grep -iE "Your ?IP ?address ?is ?: ?" | sed "$sed_ex_sw" 's/.*\s+([[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}\.[[:digit:]]{1,3}).*/\1/')
