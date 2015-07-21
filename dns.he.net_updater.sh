@@ -84,7 +84,6 @@ if [ "$use_local_iface_address" == "yes" ]; then
     currentip=$(ifconfig "$iface" inet | grep -E '^.*inet [0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}.*$' | sed "$sed_ex_sw" 's/^.*inet ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}).*$/\1/')
   else
     logger -i -t com.bennettp123.dyndns "${hostname}: could not determine local IP address"
-    retval=1
     exit 1
   fi
 else
