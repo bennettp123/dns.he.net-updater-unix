@@ -6,6 +6,7 @@ USAGE="Usage:
 
  -h <fqdn>     : The hostname to update
  -p <password> : The password to use
+ -P <file>     : Read password from <file>
  -l            : Set using local interface address
  -i <iface>    : The interface to use when getting local address. Implies -l
 
@@ -37,10 +38,13 @@ if [ "$1" == "--help" ]; then
   exit 0
 fi
 
-while getopts 'h:p:li:h' optname; do
+while getopts 'h:p:P:li:h' optname; do
   case "$optname" in
     'h')
       hostname="$OPTARG"
+      ;;
+    'P')
+      password_file="$OPTARG"
       ;;
     'p')
       password="$OPTARG"
@@ -64,6 +68,10 @@ while getopts 'h:p:li:h' optname; do
       ;;
   esac
 done
+
+if [ -z "$password" ] && [ -n "$password_file" ]; then
+  password=$(<"$password_file")
+fi
 
 previous_file="${previous_file_prefix}.${hostname}"
 previous=$(cat "${previous_file}" 2>/dev/null)
