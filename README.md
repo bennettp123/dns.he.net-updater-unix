@@ -11,3 +11,5 @@ A very basic updater for dynamic DNS services provided by <http://dns.he.net/>.
 License: MIT.<br />Warranty: None.
 
 Enjoy!
+
+See also: [mycfdns.sh](https://github.com/bennettp123/mycfdns.sh), a dynamic DNS updater for cloudflare.
